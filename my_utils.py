@@ -8,7 +8,6 @@ import time
 api_key = 'RGAPI-3a4da499-c1da-4432-ade4-5770b7db0090'
 seoul_api_key = '73734d4770796f6f36354474436765'
 
-
 def get_df(url):
     url_re = url.replace('(인증키)', seoul_api_key).replace('xml', 'json').replace('/5/', '/1000/')
     res = requests.get(url_re).json()
