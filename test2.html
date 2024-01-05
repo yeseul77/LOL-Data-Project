@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riot tier search</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <form id="myForm">
+        <label for="riot_id">riot_id:</label>
+        <input type="text" id="riot_id" name="riot_id" required>
+        <br>
+
+        <label for="tag">tag:</label>
+        <input type="tel" id="tag" name="tag" >
+        <br>
+
+        <button type="button" onclick="submitForm()">제출</button>
+    </form>
+
+    <script>
+        function submitForm() {
+            var riot_id = $("#riot_id").val();
+            var tag = $("#tag").val();
+
+            // jQuery의 ajax 함수를 사용하여 GET 요청 전송
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:8000/summoner/tier",
+                data: { riot_id: riot_id, tag: tag },
+                success: function (data) {
+                    // 성공적으로 처리된 경우
+                    console.log(data);
+                    alert("Insert 완료 되었습니다!");
+                },
+                error: function (xhr, status, error) {
+                    // 처리 실패 또는 다른 상태 코드를 받은 경우
+                    console.error(xhr.status + ': ' + xhr.statusText);
+                    alert("Insert 실패했습니다. 다시 시도해주세요.");
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
